@@ -4,17 +4,17 @@
 
 @section('content')
 <!-- End .content-box-header -->
-@if(Session::has('ok'))
-   <!--  <script>alert('{{ Session::get('ok') }}')</script> -->
+<!-- @if(Session::has('ok'))
+    <script>alert('{{ Session::get('ok') }}')</script>
    <p>Thành công</p>
 
 @elseif(Session::has('fail'))
-<!-- <script>alert('{{ Session::get('fail') }}')</script> -->
+<script>alert('{{ Session::get('fail') }}')</script>
     <p>Thất bại</p>
 @else 
 
 @endif
-
+ -->
 <!--Validator kiem tra loi-->
 
  <section id="main-content">
@@ -43,6 +43,14 @@
                                   @endforeach
                                 </ul>
                                 @endif
+
+                                @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                                    @if(Session::has('alert-' . $msg))
+                                    <h4 class="alert alert-{{ $msg }}">{{ Session::get('alert-'.$msg) }}<button class="close" data-dismiss="alert" aria-label="close">&times;</button></h4>
+                                    
+                                    @endif
+                                @endforeach
+                                
                                 <form method="POST" enctype="multipart/form-data" class="cmxform form-horizontal " id="commentForm" method="get" action="{{ route('product.update',$product->id)}}" novalidate="novalidate">
                                     {{ csrf_field() }}
                                     <div class="form-group ">

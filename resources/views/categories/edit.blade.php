@@ -1,4 +1,4 @@
-
+<!-- 
 @if(Session::has('ok'))
 	<script>alert('Thành công')</script>
 	<?php
@@ -12,7 +12,7 @@
 	?>
 @endelse
 
-@endif
+@endif -->
 
 @extends('include.layout')
 @section('title', 'Products')
@@ -35,6 +35,14 @@
                                 <a class="fa fa-times" href="javascript:;"></a>
                              </span>
                         </header>
+
+                         @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                            @if(Session::has('alert-' . $msg))
+                            <h4 class="alert alert-{{ $msg }}">{{ Session::get('alert-'.$msg) }}<button class="close" data-dismiss="alert" aria-label="close">&times;</button></h4>
+                            
+                            @endif
+                        @endforeach
+                                
                         <div class="panel-body">
                             <div class=" form">
                                 @if (count($errors) > 0)

@@ -59,10 +59,10 @@ Class CategoriesController extends Controller
 
         //process insert
         if(CategoriesModel::insert($date)) {
-            $request->session()->flash('ok','Thành công');
+            $request->session()->flash('alert-success','Thành công');
             return back();
         } else {
-            $request->session()->flash('fail','thất bại');
+            $request->session()->flash('alert-danger','thất bại');
             return back();
         }
     }
@@ -102,10 +102,10 @@ Class CategoriesController extends Controller
         ];
 
         if(CategoriesModel::update_cagtegories($id,$date)) {
-            $request->session()->flash('ok','Thành công');
+            $request->session()->flash('alert-success','Thành công');
             return redirect()->route('categories.list');
         } else {
-            $request->session()->flash('fail','thất bại');
+            $request->session()->flash('alert-danger','thất bại');
             return back();
         }
     }
@@ -121,10 +121,10 @@ Class CategoriesController extends Controller
         $count = count(ProductModel::get_product_by_cate_all($id));
         if($count == 0) {
             if(CategoriesModel::delete_categories($id)) {
-                $request->session()->flash('ok','Thành công');
+                $request->session()->flash('alert-success','Thành công');
                 return redirect()->back();
             } else {
-                $request->session()->flash('fail','thất bại');
+                $request->session()->flash('alert-danger','thất bại');
                 return back();
             }
         } else {

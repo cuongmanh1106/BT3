@@ -1,24 +1,24 @@
 
-@if(Session::has('ok'))
+<!-- @if(Session::has('ok'))
 	<script>alert('Thành công')</script>
 	<?php
-		Session::forget('ok');
+		//Session::forget('ok');
 	?>
 
 @elseif(Session::has('fail'))
 	<script>alert('Thất bại')</script>
 	<?php
-		Session::forget('fail');
+		//Session::forget('fail');
 	?>
 @endelse
 
 @elseif(Session::has('none'))
 	<script>alert('Đã có sản phẩm thuộc loại này')</script>
 	<?php
-		Session::forget('none');
+		//Session::forget('none');
 	?>
 @endelse
-@endif
+@endif -->
 
 
 @extends('include.layout')
@@ -34,6 +34,12 @@
      List of Categories
     </div>
     <div>
+      @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+          @if(Session::has('alert-' . $msg))
+          <h4 class="alert alert-{{ $msg }}">{{ Session::get('alert-'.$msg) }}<button class="close" data-dismiss="alert" aria-label="close">&times;</button></h4>
+          
+          @endif
+      @endforeach
       <table class="table" ui-jq="footable" ui-options='{
         "paging": {
           "enabled": true

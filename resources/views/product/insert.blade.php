@@ -7,16 +7,16 @@
 @section('content')
 <!-- End .content-box-header -->
 
-@if(Session::has('ok'))
+<!-- @if(Session::has('ok'))
    
-   <p>Thành công</p>
+    <script>alert('{{ Session::get('ok') }}')</script> 
 
 @elseif(Session::has('fail'))
     
     <p>Thất bại</p>
 @else 
 
-@endif
+@endif -->
 
 
 <!--Validator kiem tra loi-->
@@ -51,7 +51,7 @@
                                 @foreach (['danger', 'warning', 'success', 'info'] as $msg)
                                     @if(Session::has('alert-' . $msg))
                                     <h4 class="alert alert-{{ $msg }}">{{ Session::get('alert-'.$msg) }}<button class="close" data-dismiss="alert" aria-label="close">&times;</button></h4>
-                                    <h1>123</h1>
+                                    
                                     @endif
                                 @endforeach
                                 <form method="POST" enctype="multipart/form-data" class="cmxform form-horizontal " id="commentForm" method="get" action="{{ route('product.insert')}}" novalidate="novalidate">

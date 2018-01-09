@@ -91,10 +91,10 @@ class ProductController extends Controller
         if (ProductModel::insert_product($product)) {
             //Move file to server
             $file->move("public/images",$new_img);
-            $request->session()->flash('ok','thanh cong');
+            $request->session()->flash('alert-success','Thành công');
             return back();
         } else {
-            $request->session()->flash('fail','that bai');
+            $request->session()->flash('alert-danger','Thất bại');
             return back();
         }
     }
@@ -164,10 +164,10 @@ class ProductController extends Controller
                     unlink(public_path('images/'.$old_img));
                 $file->move("public/images",$new_img);
             }
-            $request->session()->flash('ok',$new_img.$product->images);
+            $request->session()->flash('alert-success',"Thành công");
             return redirect()->route('product.list');
         } else {
-            $request->session()->flash('fail',$new_img.$product->images);
+            $request->session()->flash('alert-danger','Thất bại');
             return redirect()->back();
         }
     }
@@ -187,7 +187,7 @@ class ProductController extends Controller
         //process delete
         if (ProductModel::delete_product($id)) {
             File::delete(public_path('images/'.$old_image));
-            $request->session()->flash('ok','Sản phẩm đã được xóa');
+            $request->session()->flash('alert-success','Sản phẩm đã được xóa');
             return back();
         }
     }

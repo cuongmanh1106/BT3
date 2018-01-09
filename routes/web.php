@@ -60,4 +60,5 @@ Route::get('logout','LoginController@Logout')->name('logout');
 Route::get('register', 'RegisterController@getRegister')->name('register.get');
 Route::post('register', 'RegisterController@postRegister')->name('register.post');
 //chuyen tat ca url k co ve trang 404
+Route::any('{all?}','HomeController@notfound')->where('all','(.*)');
 
